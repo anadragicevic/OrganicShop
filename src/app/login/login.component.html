@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+    <div class="col-6">
+      
+    <form #loginForm="ngForm" (ngSubmit)="registerUser(loginForm.value)">
+        <h1 class="text-center">Sign Up</h1>
+    
+        <div class="form-group" style="padding: 0 100px;">
+            <hr>
+        <input class="form-control me-2"  type="text" ngModel id="email" name="email" placeholder="E-mail">
+        <br>
+        <input class="form-control me-2" type="password" ngModel id="password" name="password" placeholder="Password">
+        <br>
+        <button class="btn btn-primary  btn-block" style="margin: 0 120px;" type="submit">Sign in</button>
+    </div>
+    </form>
+</div>
+
+<div class="col-5">
+    <h1>Or login with Google</h1>
+    <br>
+    <button class="btn btn-danger" style="margin: 0 100px;" (click)="login()">Google login</button>
+</div>
+</div>
+</div>
