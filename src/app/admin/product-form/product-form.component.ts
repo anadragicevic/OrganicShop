@@ -3,9 +3,8 @@ import { ProductService } from './../../services/product.service';
 import { CategoryService } from './../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import {  set } from "firebase/database";
-import { getDatabase, ref, child, get } from "firebase/database";
-import { Product } from 'src/app/models/product';
+
+
 
 
 
@@ -17,40 +16,42 @@ import { Product } from 'src/app/models/product';
 export class ProductFormComponent implements OnInit {
 
   categories$;
-  product:Product;
+  product = { title: '', price: '', category: '', imageUrl: '' };
   id;
 
 
-  constructor( 
+  constructor(
     private router: Router,
     private route: ActivatedRoute,
-    categoryService: CategoryService, 
-    private productService:ProductService) { 
+    categoryService: CategoryService,
+    private productService: ProductService) {
 
-    this.categories$=categoryService.getCategories();
+    this.categories$ = categoryService.getCategories();
 
-    this.id=this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
 
-    if(this.id) this.productService.get(this.id).pipe(take(1)).subscribe(p=> {
-      this.product=p;
+    if (this.id) this.productService.get(this.id).pipe(take(1)).subscribe(p => {
+      this.product = p;
       console.log(this.product)
     });
   }
-    
-  
-  save(product){
-      console.log(product);
-      if(this.id) this.productService.update(this.id, product);
-      else this.productService.create(product);
+
+
+  save(product) {
+    console.log(product);
+    if (this.id) this.productService.update(this.id, product);
+    else this.productService.create(product);
+    this.router.navigate(['/admin/products']);
+  }
+
+  delete() {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.productService.delete(this.id);
       this.router.navigate(['/admin/products']);
+    }
   }
-   
-  delete(){
-      if(confirm('Are you sure you want to delete this product?')){
-        this.productService.delete(this.id);
-        this.router.navigate(['/admin/products']);
-      }
-  }
+
+
 
   ngOnInit(): void {
   }

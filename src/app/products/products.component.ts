@@ -1,3 +1,6 @@
+import { CategoryService } from './../services/category.service';
+import { Product } from 'src/app/models/product';
+import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  products$;
+  categories$;
+
+  constructor(private productService: ProductService, private categoryService: CategoryService) {
+    this.productService.getAll().subscribe(products=>this.products$=products);
+    this.categoryService.getCategories().subscribe(categories=>this.categories$=categories)
+   }
 
   ngOnInit(): void {
   }

@@ -1,24 +1,36 @@
-<br>
+<br />
+<h3>Click down bellow to add a new product</h3>
 <p>
-    <a routerLink="/admin/products/new" class="btn btn-primary">New product</a>
+  <a routerLink="/admin/products/new" class="btn btn-primary">NEW ITEM</a>
 </p>
-<br>
+<br />
+<div class="form-group text-center" style="margin: 0 800px 0 0;">
+  <p>
+    <input
+      #query
+      (keyup)="filter(query.value)"
+      type="text"
+      class="form-control me-2"
+      placeholder="Search..."
+    />
+  </p>
+</div>
+<br />
 <table class="table">
   <thead>
-      <tr>
- 
+    <tr>
       <th>Title</th>
       <th>Price</th>
-      <th></th></tr>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let p of products$ | async">
-      
-       <td>{{p.payload.val().title }}</td>
-       <td> {{p.payload.val().price | currency:'USD'}} </td>
-       <td> 
-           <a [routerLink]="['/admin/products/' , p.key ]">Edit</a>
-       </td>
-      </tr>
+    <tr *ngFor="let p of products$">
+      <td>{{ p.payload.val().title }}</td>
+      <td>{{ p.payload.val().price | currency: 'USD' }}</td>
+      <td>
+        <a [routerLink]="['/admin/products/', p.key]">Edit</a>
+      </td>
+    </tr>
   </tbody>
 </table>
