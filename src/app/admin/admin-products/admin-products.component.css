@@ -4,3 +4,9 @@ thead{
 tbody{
     background-color: rgb(222, 222, 226);
 }
+
+mat-paginator{
+    width: 400px;
+    margin-left: 350px;
+    background-color: rgb(154, 159, 159);
+}

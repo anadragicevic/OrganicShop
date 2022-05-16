@@ -23,10 +23,10 @@ export class ProductFormComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    categoryService: CategoryService,
+    private categoryService: CategoryService,
     private productService: ProductService) {
 
-    this.categories$ = categoryService.getCategories();
+    this.categoryService.getCategories().subscribe(categories=> this.categories$=categories);
 
     this.id = this.route.snapshot.paramMap.get('id');
 

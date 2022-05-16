@@ -1,30 +1,52 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
   <div class="container">
     <a class="navbar-brand" routerLink="/">
-       <img class="rounded-circle" src="./assets/images.png" alt="logo"> Organic Shop</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <img class="rounded-circle" src="./assets/images.png" alt="logo" />
+      Organic Shop
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/shopping-cart" routerLinkActive="active">SHOPPING CART</a>
+          <a
+            class="nav-link"
+            routerLink="/shopping-cart"
+            routerLinkActive="active"
+          >
+            SHOPPING CART
+          </a>
         </li>
-        <li *ngIf="!auth.user"  class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">LOGIN</a>
+        <li *ngIf="!auth.user" class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">
+            LOGIN
+          </a>
         </li>
       </ul>
-  
-      <div *ngIf="auth.user" class="dropdown" dropdown >
-        <a class="dropdown-toggle" dropdownToggle >Welcome {{auth.user.displayName}} </a>
-        <div class="dropdown-menu" *dropdownMenu >
-          <a  class="dropdown-item" routerLink="/my-orders">My orders</a>
+
+      <div *ngIf="auth.user" class="dropdown" dropdown>
+        <a class="dropdown-toggle" dropdownToggle>
+          Welcome {{ auth.user.displayName }}
+        </a>
+        <div class="dropdown-menu" *dropdownMenu>
+          <a class="dropdown-item" routerLink="/my-orders">My orders</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink="/admin/orders">Manage orders</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="/admin/products">Manage products</a>
+          <a class="dropdown-item" routerLink="/admin/products">
+            Manage products
+          </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()" >Logout</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>

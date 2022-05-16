@@ -1,7 +1,9 @@
-import { Product } from './../../models/product';
+import { OrderSuccessComponent } from './../../order-success/order-success.component';
+
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy,ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-admin-products',
@@ -9,9 +11,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
+ 
   products$;
   filterProducts: any[];
   subscription: Subscription;
+
 
   filter(query: string) {
     console.log(query);
@@ -31,6 +35,16 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  
+  OnPageChange(event:PageEvent){
+    console.log(event);
+    const startIndex=event.pageIndex * event.pageSize;
+    let endIndex=startIndex + event.pageSize;
+    if(endIndex>this.products$?.length){
+      endIndex=this.products$?.length;
+    }
+    this.products$.scope(event.pageSize);
+  }
 
 
 }
