@@ -35,7 +35,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  
   OnPageChange(event:PageEvent){
     console.log(event);
     const startIndex=event.pageIndex * event.pageSize;

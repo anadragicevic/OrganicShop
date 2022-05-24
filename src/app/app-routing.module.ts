@@ -1,3 +1,4 @@
+import { AboutUsComponent } from './about-us/about-us.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
@@ -12,7 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', component: ProductsComponent},
+  { path: '', component: HomeComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent},
   { path: 'check-out', component: CheckOutComponent},
@@ -22,8 +23,7 @@ const routes: Routes = [
   { path: 'admin/orders', component: AdminOrdersComponent},
   { path: 'admin/products/new', component: ProductFormComponent},
   { path: 'admin/products/:id', component: ProductFormComponent},
- 
- 
+  { path: 'about-us', component: AboutUsComponent},
   { path: 'admin/products', component: AdminProductsComponent}
   
 ];

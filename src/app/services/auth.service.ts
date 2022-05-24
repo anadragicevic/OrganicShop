@@ -24,7 +24,7 @@ export class AuthService {
   login() {
     return this.afAuth.signInWithPopup(new GoogleAuthProvider).then(
       res => {
-        this.router.navigate(['/shopping-cart']);
+        this.router.navigate(['/products']);
         localStorage.setItem('token', JSON.stringify(res.user));
       }, err => {
         alert(err.message);

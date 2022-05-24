@@ -1,25 +1,32 @@
+import { Product } from './../models/product';
+import { ShoppingCartService } from './../services/shopping-cart.service';
 import { CategoryService } from './../services/category.service';
-import { Product } from 'src/app/models/product';
 import { ProductService } from './../services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { take, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   products$;
   categories$;
   category: string;
   filteredProducts$=[];
+  product :Product;
+  shoppingCart:any;
+  subscription:Subscription;
+
 
   constructor(private route:ActivatedRoute, 
               private productService: ProductService, 
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private shoppingCartService:ShoppingCartService) {
 
     this.productService.getAll().pipe(switchMap(products=>{this.products$=products;
       return route.queryParamMap})).subscribe(params=>{
@@ -29,11 +36,23 @@ export class ProductsComponent implements OnInit {
     });
     this.categoryService.getCategories().subscribe(categories=>this.categories$=categories);
 
-   
-
+    
    }
+  
 
-  ngOnInit(): void {
+  async ngOnInit(){
+   this.subscription=(await this.shoppingCartService.getCart()).subscribe(cart=>this.shoppingCart=cart);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe;
+  }
+  addToChart(product:Product){
+         this.shoppingCartService.addToCart(product);
   }
 
+  getQuantity(){
+     
+     let item=this.shoppingCart?.items[this.product?.key];
+     return item? item.quantity : 0;
+  }
 }

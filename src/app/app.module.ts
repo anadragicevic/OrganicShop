@@ -1,3 +1,4 @@
+
 import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
@@ -25,6 +26,7 @@ import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AdminProductsComponent,
     LoginComponent,
     ProductFormComponent,
+    AboutUsComponent,
+  
 
   ],
   imports: [

@@ -7,10 +7,8 @@
     [class.active]="category===c.key">{{c.payload.val().name}}</a>
     </div>
   </div>
-
   <div class="col">
     <div class="row">
-    
         <ng-container *ngFor="let p of filteredProducts$; let i=index">
             <div class="col-6">
           <div class="card mb-4">
@@ -26,7 +24,12 @@
               <p class="card-text">
                Price: {{ p.payload.val().price | currency: 'USD' }}
               </p>
-              <a href="" class="btn btn-primary">Add to Cart</a>
+         
+                <button  class="btn btn-primary" (click)="addToChart(p)">Add to Cart</button>
+                <div>Quantity: </div>
+           
+              
+             
             </div>
           </div > 
         </div>

@@ -12,7 +12,8 @@ export class UserService {
   save(user: any){
     this.db.object('/users/' + user.uid).update({
       name: user.displayName,
-      email: user.email
+      email: user.email,
+      photoURL: user.photoURL
     })
   }
 }

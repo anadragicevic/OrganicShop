@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
   <div class="container">
     <a class="navbar-brand" routerLink="/">
+      
+Think Organic
       <img class="rounded-circle" src="./assets/images.png" alt="logo" />
-      Organic Shop
+     
     </a>
     <button
       class="navbar-toggler"
@@ -20,21 +22,37 @@
         <li class="nav-item">
           <a
             class="nav-link"
+            routerLink="/products"
+            routerLinkActive="active"
+          >
+            PRODUCTS
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
             routerLink="/shopping-cart"
             routerLinkActive="active"
           >
             SHOPPING CART
           </a>
         </li>
-        <li *ngIf="!auth.user" class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">
-            LOGIN
-          </a>
+      
+        
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="/about-us" routerLinkActive="active" >ABOUT US</a>
+        </li>
+        <li *ngIf="!auth.user" class="nav-item" style="margin-left: 480px ;">
+          <button class=" btn btn-success  nav-link" routerLink="/login" routerLinkActive="active">
+            Get started
+          </button>
         </li>
       </ul>
 
       <div *ngIf="auth.user" class="dropdown" dropdown>
         <a class="dropdown-toggle" dropdownToggle>
+          <img class="rounded-circle me-2" src="{{auth.user.photoURL}}" alt="error">
           Welcome {{ auth.user.displayName }}
         </a>
         <div class="dropdown-menu" *dropdownMenu>

@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row" >
     <div class="col-6">
       
     <form #loginForm="ngForm" (ngSubmit)="registerUser(loginForm.value)">
@@ -16,10 +16,10 @@
     </form>
 </div>
 
-<div class="col-5">
-    <h1>Or login with Google</h1>
+<div class="col-6">
+    <h1 style="margin-left: 100px;">Or login with Google</h1>
     <br>
-    <button class="btn btn-danger" style="margin: 0 100px;" (click)="login()">Google login</button>
+    <button class="btn btn-danger" style="margin: 0 110px;" (click)="login()">Google login</button>
 </div>
 </div>
 </div>

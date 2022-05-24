@@ -1,0 +1,14 @@
+img{
+    width:600px;
+    height: 350px;
+    border: 2px solid rgb(25, 145, 154);
+    
+}
+
+h1, h2{
+
+    color: rgb(25, 145, 154);
+}
+h1{
+    text-transform: uppercase;
+}

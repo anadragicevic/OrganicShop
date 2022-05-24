@@ -10,3 +10,10 @@ mat-paginator{
     margin-left: 350px;
     background-color: rgb(154, 159, 159);
 }
+h2{
+    color: rgb(88, 87, 87);
+}
+
+.btn{
+    width: 200px;
+}
