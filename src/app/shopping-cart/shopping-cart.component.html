@@ -1,6 +1,21 @@
 <h1>Shopping Cart</h1>
-<ng-container >
-   <p>
-       You have 0 items in your shopping cart.
-   </p>
+<ng-container *ngIf="cart$ | async as cart" >
+   <h3>
+       You have {{$any(cart).totalItemsCount}} items in your shopping cart.
+   </h3>
+   <br>
+   <table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th> Quantity</th>
+        </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let productId of $any(cart).productsIds" >
+       <td>{{$any(cart).items[productId]}}</td>
+       <td>{{$any(cart).items[productId].quantity}}</td>
+    </tr>
+</tbody>
+   </table>
 </ng-container>

@@ -36,6 +36,7 @@ Think Organic
             routerLinkActive="active"
           >
             SHOPPING CART
+            <span class="badge bg-warning bg-pill" *ngIf="cart$ | async as cart">{{cart.totalItemsCount}}</span>
           </a>
         </li>
       
