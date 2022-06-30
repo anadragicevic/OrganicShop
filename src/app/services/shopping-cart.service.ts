@@ -21,12 +21,12 @@ export class ShoppingCartService {
       .pipe(map((x:any) => new ShoppingCart(x.items)));
   }
 
-  addToCart(product: Product) {
+  async  addToCart(product: Product) {
     this.updateItem(product, 1);
 
   }
 
-  removeFromCart(product: Product) {
+  async  removeFromCart(product: Product) {
     this.updateItem(product, -1);
   }
 
