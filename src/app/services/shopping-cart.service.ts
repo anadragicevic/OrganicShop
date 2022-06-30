@@ -10,20 +10,20 @@ import { ShoppingCartItem } from '../models/shopping-cart-item';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  
 
-  constructor(private db:AngularFireDatabase) { }
+
+  constructor(private db: AngularFireDatabase) { }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     const cartId = await this.getOrCreateCartId();
 
-    return this.db.object('/shopping-carts/' + cartId).snapshotChanges()
-      .pipe(map(x => new ShoppingCart(x.payload.exportVal().items)));
+    return this.db.object('/shopping-carts/' + cartId).valueChanges()
+      .pipe(map((x:any) => new ShoppingCart(x.items)));
   }
 
   addToCart(product: Product) {
     this.updateItem(product, 1);
-  
+
   }
 
   removeFromCart(product: Product) {
@@ -43,6 +43,7 @@ export class ShoppingCartService {
   }
 
   private async getOrCreateCartId() {
+
     const cartId = localStorage.getItem('cartId');
 
     if (cartId)
@@ -52,38 +53,35 @@ export class ShoppingCartService {
     localStorage.setItem('cartId', result.key);
     return result.key;
 
-
   }
 
   private getItem(cartId: string, productId: string) {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  private async updateItem(product: Product, change: number) {
-    const cartId = await this.getOrCreateCartId();
-    const item = this.getItem(cartId, product.key);
+  async updateItem(product: any, change: number) {
+    let cartId = await this.getOrCreateCartId();
+    let item$ = this.getItem(cartId, product.key);
 
-    item
-      .valueChanges()
+    item$.valueChanges()
       .pipe(take(1))
       .subscribe((data: ShoppingCartItem) => {
         const quantity = (data ? (data.quantity || 0) : 0) + change; // Used || to avoid null reference error
 
         if (!quantity)
-          item.remove();
+          item$.remove();
 
         else
-          
-          item.update({
-            
-            title: product.title =null,
-            imageUrl: product.imageUrl =null,
-            price: product.price =null,
+
+          item$.update(JSON.parse(JSON.stringify({
+            title: product.payload.val().title,
+            imageUrl: product.payload.val().imageUrl,
+            price: product.payload.val().price,
             quantity
-          },
-          
+          }))
+
           );
-          
+
       });
   }
 }

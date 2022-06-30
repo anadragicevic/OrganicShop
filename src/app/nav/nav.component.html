@@ -19,23 +19,30 @@ Think Organic
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="auth.user$ | async as user">
           <a
-            class="nav-link"
+            class="nav-link me-2"
             routerLink="/products"
             routerLinkActive="active"
           >
             PRODUCTS
           </a>
         </li>
-
-        <li class="nav-item">
+         <li class="nav-item" *ngIf="auth.user$ | async as user">
+          <a
+          class="nav-link"
+          routerLink="/shopping-cart"
+          routerLinkActive="active"
+        >  <i class="material-icons">shopping_cart</i>  </a>
+         
+         </li>
+        <li class="nav-item" *ngIf="auth.user$ | async as user">
           <a
             class="nav-link"
             routerLink="/shopping-cart"
             routerLinkActive="active"
           >
-            SHOPPING CART
+          SHOPPING CART
             <span class="badge bg-warning bg-pill" *ngIf="cart$ | async as cart">{{cart.totalItemsCount}}</span>
           </a>
         </li>
@@ -44,17 +51,17 @@ Think Organic
         <li class="nav-item ">
           <a class="nav-link" routerLink="/about-us" routerLinkActive="active" >ABOUT US</a>
         </li>
-        <li *ngIf="!auth.user" class="nav-item" style="margin-left: 480px ;">
+        <li *ngIf="!(auth.user$ | async) " class="nav-item" style="margin-left: 650px ;">
           <button class=" btn btn-success  nav-link" routerLink="/login" routerLinkActive="active">
             Get started
           </button>
         </li>
       </ul>
 
-      <div *ngIf="auth.user" class="dropdown" dropdown>
+      <div *ngIf="auth.user$ | async as user" class="dropdown" dropdown>
         <a class="dropdown-toggle" dropdownToggle>
-          <img class="rounded-circle me-2" src="{{auth.user.photoURL}}" alt="error">
-          Welcome {{ auth.user.displayName }}
+          <img class="rounded-circle me-2" src="{{user.photoURL}}" alt="error" referrerpolicy="no-referrer">
+          Welcome {{ user.displayName }}
         </a>
         <div class="dropdown-menu" *dropdownMenu>
           <a class="dropdown-item" routerLink="/my-orders">My orders</a>
@@ -65,7 +72,7 @@ Think Organic
             Manage products
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()">Logout</a>
+          <a class="dropdown-item" (click)="logout()" routerLink="/">Logout</a>
         </div>
       </div>
     </div>

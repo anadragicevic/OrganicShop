@@ -2,23 +2,19 @@ import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Injectable } from '@angular/core';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, User } from 'firebase/auth';
+import { Observable } from 'rxjs';
+import * as firebase from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user: any;
+  user$: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private userService: UserService) {
-    afAuth.authState.subscribe(x => {
-      this.user = x;
-      if (x) 
-      { userService.save(x) }
-      else
-       { console.log('error') }
-    });
+    this.user$=afAuth.authState;
   }
   
   login() {

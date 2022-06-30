@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ShoppingCartComponent implements OnInit {
   
-  cart$;
+  cart$:any;
  
 
   constructor(private shoppingCartService : ShoppingCartService) { 
@@ -23,5 +23,6 @@ export class ShoppingCartComponent implements OnInit {
   async ngOnInit() {
    this.cart$= await this.shoppingCartService.getCart();
   }
+
 
 }

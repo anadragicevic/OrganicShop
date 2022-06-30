@@ -38,8 +38,8 @@
 <mat-paginator
 #paginator
     [length]="this.products$?.length"
-    [pageSize]="4"
-    [pageSizeOptions]="[2,4,6]"
+    [pageSize]="15"
+    [pageSizeOptions]="[15, 30]"
     (page)="OnPageChange($event)"
 >
 </mat-paginator>

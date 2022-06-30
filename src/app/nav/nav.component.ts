@@ -17,12 +17,11 @@ import { ShoppingCart } from '../models/shopping-cart';
 })
 export class NavComponent implements OnInit  {
   
-  //shoppingCartitemCount:number;
 
   cart$: Observable<ShoppingCart>;
  
   constructor(public auth:AuthService, private shoppingCartService: ShoppingCartService ) {
-   
+      
    }
   async ngOnInit() {
     this.cart$= await this.shoppingCartService.getCart();

@@ -18,6 +18,8 @@ import { isNgTemplate } from '@angular/compiler';
 })
 export class ProductsComponent implements OnInit {
 
+  @Input('shopping-cart') shoppingCart: ShoppingCart; 
+
   products$;
   categories$;
   category: string;
@@ -27,6 +29,8 @@ export class ProductsComponent implements OnInit {
   quantity;
 
   cart$;
+
+
 
 
   constructor(private route:ActivatedRoute, 
@@ -52,6 +56,8 @@ export class ProductsComponent implements OnInit {
 
   addToChart(product:Product){
          this.shoppingCartService.addToCart(product);
+         window.alert('Your product has been added to the cart!');
+
   }
 
   // getQuantity(){
