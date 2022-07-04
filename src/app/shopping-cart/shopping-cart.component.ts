@@ -18,7 +18,6 @@ export class ShoppingCartComponent implements OnInit {
  
 
   constructor(private shoppingCartService : ShoppingCartService, private router: Router) { 
-    
   }
   
   async ngOnInit() {
@@ -26,10 +25,11 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   clearCart(){
-    this.shoppingCartService.clearCart();
+    
     if(window.confirm("Are you sure you want to clear your shopping cart?")){
-    window.alert("You deleted all item from your cart.");
-    this.router.navigate(['/products']);
+      this.shoppingCartService.clearCart();
+      window.alert("You deleted all items from your cart.");
+      
     }
     
   }

@@ -27,6 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
+
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     LoginComponent,
     ProductFormComponent,
     AboutUsComponent,
+    ViewOrderComponent,
   
 
   ],
@@ -58,6 +61,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     BsDropdownModule,
     ReactiveFormsModule,
     MatPaginatorModule
+    
  
   ],
   providers: [

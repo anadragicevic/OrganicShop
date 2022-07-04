@@ -9,7 +9,7 @@
     transform: scale(1, 1);
     transition-duration: 500ms;
     transition-timing-function: ease-out;
-    height: 400px;
+    height: 300px;
     
    
   }
@@ -21,7 +21,8 @@
   
   .card{
       border-bottom-right-radius: 30%;
-      border-color: rgb(167, 197, 228);
+      border: 2px solid rgb(185, 208, 232);
+   
   }
 
   .list-group-item{
@@ -29,7 +30,7 @@
   }
 
   .btn{
-     width: 200px;
+     width: 150px;
   }
   
  .title {

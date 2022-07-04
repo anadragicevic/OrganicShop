@@ -11,6 +11,7 @@ import { take, Subscription, Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
 import { isNgTemplate } from '@angular/compiler';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -25,18 +26,14 @@ export class ProductsComponent implements OnInit {
   category: string;
   filteredProducts$=[];
   product :Product;
-
   quantity;
-
   cart$;
-
-
-
 
   constructor(private route:ActivatedRoute, 
               private productService: ProductService, 
               private categoryService: CategoryService,
-              private shoppingCartService:ShoppingCartService) {
+              private shoppingCartService:ShoppingCartService,
+   ) {
 
     this.productService.getAll().pipe(switchMap(products=>{this.products$=products;
       return route.queryParamMap})).subscribe(params=>{
@@ -53,10 +50,9 @@ export class ProductsComponent implements OnInit {
    
      }
   
-
   addToChart(product:Product){
          this.shoppingCartService.addToCart(product);
-         window.alert('Your product has been added to the cart!');
+         window.alert('Your product has been added to the cart.');
 
   }
 

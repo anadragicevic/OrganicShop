@@ -1,3 +1,4 @@
+import { ViewOrderComponent } from './view-order/view-order.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuardService]},
   { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService]},
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService]},
-  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService]},
+  { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService]},
+  { path: 'view-order', component: ViewOrderComponent},
    { path: 'login', component: LoginComponent},
   { path: 'my-orders', component: MyOrdersComponent},
   { path: 'admin/orders', component: AdminOrdersComponent},

@@ -1,11 +1,20 @@
 img{
+
     height: 45px;
     width: 50px;
     border: 2px solid #fff;
 }
 
 .btn{
+
     width: 150px;
-    height: 38px;
-    
+    height: 38px;   
 }
+
+.dropdown-menu{
+
+    margin-left: 60px;  
+    text-align:center;
+}     
+
+

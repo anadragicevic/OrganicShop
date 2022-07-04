@@ -1,8 +1,7 @@
+<h1><strong>PRODUCT LIST</strong></h1>
 <br />
-<h2>Click down bellow to add a new product</h2>
-<p>
-  <a routerLink="/admin/products/new" class="btn btn-primary">NEW ITEM</a>
-</p>
+<h1>Click here to add a new product  <a routerLink="/admin/products/new" class="btn btn-primary">NEW</a></h1>
+
 <br />
 <div class="form-group text-center" style="margin: 0 800px 0 0;">
   <p>
@@ -11,25 +10,25 @@
       (keyup)="filter(query.value)"
       type="text"
       class="form-control me-2"
-      placeholder="Search..."
+      placeholder=" &#xF002; &nbsp; Search " style="font-family: FontAwesome, Arial"
     />
-  </p>
+ </p>
 </div>
 <br />
   
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th></th>
+      <th style="width: 200px;">Title</th>
+      <th class="text-center" style="width:150px">Price</th>
+      <th style="width:150px"></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let p of products$  ">
-      <td>{{ p.payload.val().title }}</td>
-      <td>{{ p.payload.val().price | currency: 'USD' }}</td>
-      <td>
+      <td > <img [src]="p.payload.val().imageUrl" class="thumbnail">&emsp;{{ p.payload.val().title }}</td>
+      <td class="text-center">{{ p.payload.val().price | currency: 'USD' }}</td>
+      <td class="text-center">
         <a [routerLink]="['/admin/products/', p.key]">Edit</a>
       </td>
     </tr>

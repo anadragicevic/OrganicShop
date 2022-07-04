@@ -52,7 +52,6 @@ export class ShoppingCartService {
     const result = await this.create();
     localStorage.setItem('cartId', result.key);
     return result.key;
-
   }
 
   private getItem(cartId: string, productId: string) {
@@ -71,17 +70,17 @@ export class ShoppingCartService {
         if (!quantity)
           item$.remove();
 
-        else
 
+        else
           item$.update(JSON.parse(JSON.stringify({
+
             title: product.payload.val().title,
             imageUrl: product.payload.val().imageUrl,
-            price: product.payload.val().price,
+            price: product.payload.val().price ,
             quantity
+
           }))
-
           );
-
       });
   }
 }
