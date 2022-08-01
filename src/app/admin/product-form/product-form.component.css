@@ -1,4 +1,17 @@
 .card-img-top{
-    height: 400px;
-    width: 410px;
+    height: 350px;
+    width: 345px;
+}
+.btn{
+    border-radius: 10px;
+}
+
+input{
+width: 70%;
+}
+
+.card{
+  border: 2px solid rgb(219, 214, 214);
+  margin-bottom: 40px;
+
 }

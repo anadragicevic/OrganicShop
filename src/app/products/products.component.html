@@ -30,11 +30,12 @@
               <p class="card-text">
                 Price: {{ p.payload.val().price | currency: 'USD' }}
               </p>
-
-              <button class="btn btn-primary" (click)="addToChart(p)">
+             
+              <button class="shadowBtn btn-primary" (click)="addToChart(p)">
                 Add to Cart
               </button>
-              <div></div>
+              <br>
+            
             </div>
           </div>
         </div>

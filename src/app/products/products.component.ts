@@ -1,3 +1,4 @@
+import { ShoppingCart } from './../models/shopping-cart';
 import { onAuthStateChanged } from 'firebase/auth';
 import { AngularFireObject } from '@angular/fire/compat/database';
 import { Product } from './../models/product';
@@ -7,9 +8,9 @@ import { ProductService } from './../services/product.service';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { take, Subscription, Observable } from 'rxjs';
-import { ShoppingCart } from '../models/shopping-cart';
-import { isNgTemplate } from '@angular/compiler';
+import { take, Subscription, Observable } from 'rxjs';;
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -17,9 +18,7 @@ import { isNgTemplate } from '@angular/compiler';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
-
-  @Input('shopping-cart') shoppingCart: ShoppingCart; 
+export class ProductsComponent implements OnInit, OnDestroy {
 
   products$;
   categories$;
@@ -27,7 +26,8 @@ export class ProductsComponent implements OnInit {
   filteredProducts$=[];
   product :Product;
   quantity;
-  cart$;
+  cart;
+  subscription:Subscription;
 
   constructor(private route:ActivatedRoute, 
               private productService: ProductService, 
@@ -45,20 +45,30 @@ export class ProductsComponent implements OnInit {
     
    }
 
+
   async ngOnInit(){
-    this.cart$ =await this.shoppingCartService.getCart();
+    this.subscription =(await this.shoppingCartService.getCart()).subscribe(cart=>this.cart=cart);
    
      }
+
+     ngOnDestroy() {
+      this.subscription.unsubscribe();
+    }
   
   addToChart(product:Product){
          this.shoppingCartService.addToCart(product);
-         window.alert('Your product has been added to the cart.');
+         Swal.fire({
+          title: 'Success!',
+          text: 'Your product has been added to the cart.',
+          icon: 'success',
+          showConfirmButton: false,
+          width: '25%' ,
+          timer: 2500
+        })
 
   }
 
-  // getQuantity(){
-     
-  //    let item=this.shoppingCart?.items[this.product?.key];
-  //    return item? item.quantity : 0;
-  // }
+  
+
 }
+  

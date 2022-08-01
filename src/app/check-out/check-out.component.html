@@ -14,15 +14,15 @@
             id="name"
             type="text"
             class="form-control"
-            placeholder="First and Last Name"
-            style="width: 60%;"   
+            placeholder="First and Last Name"   
             required        
+            style="width: 60%;"
           />
           <div
           class="alert alert-warning"
           *ngIf="name.touched && name.invalid"
         >
-          Title field is required.
+          First and Last Name field is required.
           <br />
         </div>
           <br />
@@ -78,7 +78,7 @@
         </div>
       </form>
     </div>
-    <div class="col-4">
+    <div class="col-4" style=" margin-top: 40px; margin-bottom: 20%;">
       <h3 class="card-title"><strong> Order Summary </strong> </h3>
       <p class="card-text">You have <strong> {{ cart.totalItemsCount }} </strong> items in your shopping cart.</p>
       <ul class="list-group list-group-flush">

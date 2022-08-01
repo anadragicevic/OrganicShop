@@ -28,6 +28,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import { NgSearchFilterModule } from 'ng-search-filter';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -47,6 +49,8 @@ import { ViewOrderComponent } from './view-order/view-order.component';
     ProductFormComponent,
     AboutUsComponent,
     ViewOrderComponent,
+    SearchComponent,
+    
   
 
   ],
@@ -60,8 +64,8 @@ import { ViewOrderComponent } from './view-order/view-order.component';
     FormsModule,
     BsDropdownModule,
     ReactiveFormsModule,
-    MatPaginatorModule
-    
+    MatPaginatorModule,
+    NgSearchFilterModule
  
   ],
   providers: [

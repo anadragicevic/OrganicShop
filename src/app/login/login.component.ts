@@ -1,16 +1,11 @@
 import { AuthService } from './../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-import { onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, User } from 'firebase/auth';
-
-
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuth, signInAnonymously, signInWithPopup } from 'firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { environment } from './../../environments/environment.prod';
 import { initializeApp } from 'firebase/app';
-
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase/compat';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 
 
 

@@ -20,8 +20,21 @@ export class OrderService {
     return this.db.list('/orders').valueChanges();
   }
 
+  viewOrder(orderId: string) {
+    return this.db.object('/orders/' + orderId).valueChanges();
+  }
+
+  cancelOrder(orderId: string) {
+    return this.db.object('/orders/' + orderId).remove();
+  }
+
    getOrdersByUser(userId: string) {
     return this.db.list('/orders', query => query.orderByChild('userId').equalTo(userId))
+    .snapshotChanges()
+    .pipe( map(actions =>
+      actions.map(a => ({ key: a.payload.key, ...a } ))
+    )
+  );
    
   }
 }

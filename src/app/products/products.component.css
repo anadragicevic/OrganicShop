@@ -29,8 +29,19 @@
       border-color: rgb(167, 197, 228);
   }
 
-  .btn{
+  .shadowBtn{
      width: 150px;
+     height: 30px;
+     border-radius: 10px;
+     background-color: transparent;
+     color: rgb(4, 64, 120);
+     cursor: pointer;
+     position: relative;
+  }
+
+  .shadowBtn:hover{
+    color: rgb(104, 174, 202);
+    transition: ease-in;
   }
   
  .title {
@@ -40,3 +51,9 @@
   .sticky-top{
     top:80px;
   }
+
+  .swal-height {
+    height: 800px;
+  }
+
+

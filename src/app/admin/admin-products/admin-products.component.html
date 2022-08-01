@@ -5,13 +5,7 @@
 <br />
 <div class="form-group text-center" style="margin: 0 800px 0 0;">
   <p>
-    <input
-      #query
-      (keyup)="filter(query.value)"
-      type="text"
-      class="form-control me-2"
-      placeholder=" &#xF002; &nbsp; Search " style="font-family: FontAwesome, Arial"
-    />
+   <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
  </p>
 </div>
 <br />
@@ -24,13 +18,14 @@
       <th style="width:150px"></th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let p of products$  ">
+  <tbody *ngFor="let p of products$">
+    <tr *ngIf="searchText=== '' || p.payload.val().title.toLowerCase().includes(searchText)">
       <td > <img [src]="p.payload.val().imageUrl" class="thumbnail">&emsp;{{ p.payload.val().title }}</td>
       <td class="text-center">{{ p.payload.val().price | currency: 'USD' }}</td>
       <td class="text-center">
         <a [routerLink]="['/admin/products/', p.key]">Edit</a>
       </td>
+    
     </tr>
   </tbody>
 </table>

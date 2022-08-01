@@ -1,55 +1,91 @@
-
 <div class="container" *ngIf="cart$ | async as cart">
-    <div class="row">
-        <div class="col-9">
-    <h1> <i class="material-icons">shopping_cart</i>  Order Summary </h1>
-   <h3>
-       You have <strong> {{$any(cart).totalItemsCount}} </strong> items in your shopping cart. 
-       <button *ngIf="$any(cart).items.length" class="btn btn-warning btn-sm me-2" (click)="clearCart()">Clear shopping cart</button>
-   </h3>
+  <div class="row">
+    <div class="col-9">
+      <h1>
+        <i class="material-icons">shopping_cart</i>
+        Order Summary
+      </h1>
+      <h3>
+        You have
+        <strong>{{ $any(cart).totalItemsCount }}</strong>
+        items in your shopping cart.
+        <button
+          *ngIf="$any(cart).items.length"
+          class="btn btn-warning btn-sm me-2"
+          (click)="clearCart()"
+        >
+          Clear shopping cart
+        </button>
+      </h3>
 
-   <table class="table" *ngIf="$any(cart).totalItemsCount > 0 ">
-    <thead>
-        <tr>
-        
-            <th style="width: 400px">Product</th>
-            <th class="text-center" style="width: 200px">Quantity</th>
-            <th class="text-center" style="width: 200px">Price</th>
-     
-        </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let item of $any(cart).items" >
-    
-       <td> <img [src]="item.imageUrl" class="thumbnail">&emsp;{{item.title}} </td>
-       <td class="text-center">{{item.quantity}}</td>
-       <td class="text-center">{{item.totalPrice | currency}} </td>
-     
-    </tr>
-    
-       
-</tbody>
-</table> 
+      <table class="table" *ngIf="$any(cart).totalItemsCount > 0">
+        <thead>
+          <tr>
+            <th style="width: 400px;">Product</th>
+            <th class="text-center" style="width: 200px;">
+              Quantity
+            </th>
+            <th class="text-center" style="width: 200px;">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of $any(cart).items">
+            <td>
+              <img [src]="item.imageUrl" class="thumbnail" />
+              &emsp; {{ item.title }}
+            </td>
+            <td class="text-center">
+              <button
+                (click)="removeFromCart()"
+                class="btn btn-secondary btn-block"
+              >
+                -
+              </button>
+              &nbsp; &nbsp;
+              <strong>{{ item.quantity }}</strong>
+              &nbsp; &nbsp;
+              <button class="btn btn-secondary btn-block">+</button>
+            </td>
+            <td class="text-center">
+              <strong>{{ item.totalPrice | currency }}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div
+      class="col-3"
+      style="margin-top: 95px; margin-bottom: 20%;"
+      *ngIf="$any(cart).totalItemsCount > 0"
+    >
+      <p style="margin-top: 5px;">
+        Merchandise Subtotal &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <strong>{{ $any(cart).totalPrice | currency }}</strong>
+        <br />
+        Shipping & Handling &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <strong>$0</strong>
+        <br />
+        Estimated Tax & Other Fees &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <strong>$0</strong>
+      </p>
+
+      <h4 style="margin-top: 10px;">
+        <strong>
+          Estimated Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          {{ $any(cart).totalPrice | currency }}
+        </strong>
+      </h4>
+      <a
+        *ngIf="$any(cart).items.length"
+        class="btn btn-primary btn-sm"
+        routerLink="/check-out"
+        style="margin-bottom: 10px;"
+      >
+        Checkout Shipped Items
+      </a>
+    </div>
+  </div>
 </div>
-
-<div class="col-3" style=" margin-top: 95px; margin-bottom: 20%;"  *ngIf="$any(cart).totalItemsCount > 0 ">
-   <p style="margin-top: 5px;"> 
-    Merchandise Subtotal &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>  {{ $any(cart).totalPrice | currency }} </strong> <br>
-    Shipping & Handling &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  <strong> $0  </strong><br>
-    Estimated Tax &  Other Fees  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;<strong>  $0 </strong>
-</p>
-
-<h4 style="margin-top: 10px;">
-    <strong>   
-        Estimated Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      {{ $any(cart).totalPrice | currency }}
-  </strong> 
-</h4>
-<a *ngIf="$any(cart).items.length" class="btn btn-primary btn-sm" routerLink="/check-out" style="margin-bottom: 10px;">Checkout Shipped Items</a>
-</div>
-</div>
-</div>
-
-
-   
-

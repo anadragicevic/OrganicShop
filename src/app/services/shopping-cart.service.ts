@@ -18,16 +18,20 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
 
     return this.db.object('/shopping-carts/' + cartId).valueChanges()
-      .pipe(map((x:any) => new ShoppingCart(x.items)));
+      .pipe(map((x: any) => new ShoppingCart(x.items)));
   }
 
-  async  addToCart(product: Product) {
+  async addToCart(product: Product) {
     this.updateItem(product, 1);
 
   }
 
-  async  removeFromCart(product: Product) {
-    this.updateItem(product, -1);
+  async removeFromCart(product: any) {
+    let cardId = await this.getOrCreateCartId();
+    let items$ = this.getItem(cardId, product.key);
+    items$.valueChanges().pipe(take(1)).subscribe(item => {
+      items$.update({ product: product, quantity: (item['quantity'] || 0) - 1 })
+    })
   }
 
   async clearCart() {
@@ -76,7 +80,7 @@ export class ShoppingCartService {
 
             title: product.payload.val().title,
             imageUrl: product.payload.val().imageUrl,
-            price: product.payload.val().price ,
+            price: product.payload.val().price,
             quantity
 
           }))

@@ -15,7 +15,7 @@
             class="form-control"
             required
           />
-          <div
+          <div style="width: 70%;"
             class="alert alert-warning"
             *ngIf="title.touched && title.invalid"
           >
@@ -26,9 +26,10 @@
         <br />
         <div class="form-group">
           <label for="price">Price</label>
-          <div class="input-group">
+          <div class="input-group" style="width: 70%;">
             <span class="input-group-text">$</span>
             <input
+              
               #price="ngModel"
               [(ngModel)]="product.price"
               name="price"
@@ -37,9 +38,10 @@
               class="form-control"
               required
               min="0"
+              
             />
           </div>
-          <div
+          <div style="width: 70%;"
             class="alert alert-warning"
             *ngIf="price.touched && price.invalid"
           >
@@ -62,13 +64,14 @@
             type="text"
             class="form-control"
             required
+            style="width: 70%;"
           >
             <option value=""></option>
             <option *ngFor="let c of categories$" [value]="c.key">
               {{ c.payload.val().name }}
             </option>
           </select>
-          <div
+          <div style="width: 70%;"
             class="alert alert-warning"
             *ngIf="category.touched && category.invalid"
           >
@@ -87,7 +90,7 @@
             class="form-control"
             required
           />
-          <div
+          <div style="width: 70%;"
             class="alert alert-warning"
             *ngIf="imageUrl.touched && imageUrl.invalid"
           >
@@ -99,14 +102,13 @@
         </div>
         <br />
         <button class="btn btn-primary me-2">Save</button>
-        <button type="button" (click)="delete()" class="btn btn-danger">
+        <button type="button" (click)="delete()" class="btn btn-warning">
           Delete
         </button>
       </form>
     </div>
     <div class="col-4">
-      <br />
-      <div class="card" style="margin-top: 50px;">
+      <div class="card" style="margin-top: 40px;">
         <img
           class="card-img-top"
           [src]="product.imageUrl"

@@ -12,11 +12,12 @@
   </thead> 
   <tbody>
     <tr *ngFor="let order of orders$ | async">
-      <td>{{order.shipping.name}}</td>
-      <td>{{ order.shipping.address}}</td>
-      <td>{{ order.datePlaced | date}}</td>
+      <td>{{order.payload.val().shipping.name}}</td>
+      <td>{{ order.payload.val().shipping.address}}</td>
+      <td>{{ order.payload.val().datePlaced | date}}</td>
       <td>
         <a [routerLink]="['/view-order']">View</a>
+   
       </td>
     </tr>
   </tbody> 

@@ -1,9 +1,10 @@
 import { OrderSuccessComponent } from './../../order-success/order-success.component';
 
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit, OnDestroy,ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy,ViewChild, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-admin-products',
@@ -15,13 +16,13 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products$;
   filterProducts: any[];
   subscription: Subscription;
+  searchText: string='';
 
-
-  filter(query: string) {
-    console.log(query);
-    this.filterProducts = (query) ? this.products$.filter(p => p.title?.toLowerCase()
-      .includes(query?.toLowerCase())) : this.products$;
+  onSearchTextEntered(searchValue: string){
+      this.searchText=searchValue;
+      console.log(this.searchText);
   }
+
 
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAll()

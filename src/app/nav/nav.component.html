@@ -23,17 +23,17 @@
             routerLink="/products"
             routerLinkActive="active"
           >
-            PRODUCTS
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PRODUCTS
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="auth.user$ | async as user">
+        <li class="nav-item" *ngIf="auth.user$ | async as user" >
           <a
             class="nav-link"
             routerLink="/shopping-cart"
             routerLinkActive="active"
           >
-            <i class="material-icons">shopping_cart</i>
+          &nbsp;<i class="material-icons">shopping_cart</i>
             <span
               class="badge bg-warning bg-pill"
               *ngIf="cart$ | async as cart"
@@ -45,7 +45,7 @@
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/about-us" routerLinkActive="active">
-            ABOUT US
+            &nbsp;  ABOUT US
           </a>
         </li>
         <li
@@ -54,7 +54,7 @@
           style="margin-left: 650px;"
         >
           <button
-            class="btn btn-success nav-link"
+            class="btn btn-primary nav-link"
             routerLink="/login"
             routerLinkActive="active"
           >
@@ -82,7 +82,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()" routerLink="/">Logout</a>
         </div>
-      </div>
+     </div>
     </div>
   </div>
 </nav>

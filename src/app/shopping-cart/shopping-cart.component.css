@@ -42,3 +42,9 @@ tr:nth-child(even) {
   border: 2px solid rgb(188, 185, 185);
   
 }
+
+.btn-warning, .btn-primary{
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}

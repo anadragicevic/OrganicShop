@@ -40,3 +40,10 @@ hr {
   color: #f8f9fa;
   margin: 0 250px 0 250px;
 }
+img{
+  border: 2px solid #fff;
+}
+
+.btn{
+  border-radius: 10px;
+}
